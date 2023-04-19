@@ -107,16 +107,14 @@ exports.loginAccount = async (req, res) => {
                                     if (err) {
                                         console.log(`Error: ${err}`);
                                     } else if (!data[0]) {
-                                        console.log(isAdmin);
                                         res.render('studentsRecord', {
                                             admin: isAdmin,
                                             message: "No result found!"
                                         });
                                     } else {
-                                        console.log(data);
                                         res.render('studentsRecord', {
                                             admin: isAdmin,
-                                            title: "List of Users Admin",
+                                            title: "List of Students",
                                             data: data[0]
                                         })
                                     }
@@ -143,7 +141,7 @@ exports.loginAccount = async (req, res) => {
                                     } else {
                                         res.render('studentsRecord', {
                                             admin: isAdmin,
-                                            title: "List of Users",
+                                            title: "List of Students",
                                             data: data[0]
                                         })
                                     }
@@ -182,9 +180,8 @@ exports.updateForm = (req, res) => {
             if (err) {
                 console.log(`Error :${err}`)
             } else {
-                console.log(data[0]);
                 res.render('updateForm', {
-                    title: "Updated Form",
+                    title: "Update Student",
                     data: data[0]
 
                 })
@@ -214,7 +211,7 @@ exports.updateUser = (req, res) => {
                         } else {
                             res.render('studentsRecord', {
                                 admin: isAdmin,
-                                title: "List of Users",
+                                title: "List of Students",
                                 data: result[0]
                             })
                         }
@@ -247,7 +244,7 @@ exports.deleteUser = (req, res) => {
                         } else {
                             res.render('studentsRecord', {
                                 admin: isAdmin,
-                                title: "List of Users",
+                                title: "List of Students",
                                 data: result
                             })
                         }
@@ -302,10 +299,9 @@ exports.toRecord = (req, res) => {
                     message: "No result found!"
                 });
             } else {
-                console.log(isAdmin);
                 res.render('studentsRecord', {
                     admin: isAdmin,
-                    title: "List of Users",
+                    title: "List of Students",
                     data: result[0]
                 })
             }

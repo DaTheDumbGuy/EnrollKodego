@@ -10,18 +10,54 @@
         label, input, select{
             margin-bottom: 1rem;
         }
+        #home{
+            position: absolute;
+            right: 5%;
+            top: 2%;
+        }
+         .nav-link{
+            color: white;
+            transition: all 0.5s;
+        }
+        .nav-link:hover{
+            color: cyan;
+            text-decoration: underline;
+            animation: shakeYoBooty 0.5s;
+        }
+        @keyframes shakeYoBooty {
+            0%{
+                transform:translateX(0);
+            }
+            33.33%{
+                transform:translateX(2px);
+            }
+            66.66%{
+                transform:translateX(-4px);
+            }
+            100%{
+                 transform:translateX(0);
+            }
+        }
+        @media screen and (min-width: 1000px){
+            .card{
+                width: 50%;
+            }
+        }
     </style>
 </head>
-<body>
-
-     <div class="container">
-        <div class="card w-50 mx-auto mt-5">
-            <div class="card-header">Log In</div>
+<body class="text-bg-dark">
+    <div id="home" class="border p-3 rounded-2">
+        <a href="/" class="nav-link">Home</a>
+    </div>
+     <div class="container pt-5">
+        <div class="card mx-auto mt-5 text-bg-dark border border-3 border-primary">
+            <div class="card-header border-primary ">Register</div>
             <div class="card-body">
-                {{!-- Hanndle Bars  --}}
+
                 {{#if message}}
-                    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+                    <h4 class="alert alert-info mt-4 text-center">{{message}}</h4>
                 {{/if}}
+                
                 <form action="/auth/register" method="post">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" >
@@ -39,7 +75,9 @@
                         <option value="student">Student</option>
                         <option value="teacher">Teacher</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

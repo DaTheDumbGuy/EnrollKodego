@@ -1,0 +1,32 @@
+courses
+    -course_id, course_name, course_description
+users
+    -user_id, username, email, password, role
+students
+    -student_id, course_id(foreignKey), first_name, last_name, email
+
+--------------Stored Procedure-----------
+
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `add_student`(
+    IN p_first_name VARCHAR(50),
+    IN p_last_name VARCHAR(50),
+    IN p_email VARCHAR(50),
+    IN p_course_id INT
+)
+BEGIN
+    -- Insert the new student record with the specified course_id
+    INSERT INTO students (course_id, first_name, last_name, email) VALUES (p_course_id, p_first_name, p_last_name, p_email);
+    
+    -- Optionally, return the ID of the newly inserted student record
+    SELECT LAST_INSERT_ID();
+END
+
+----------------------
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student_info`()
+BEGIN
+  SELECT students.student_id, students.first_name, students.last_name, students.email, courses.course_name
+  FROM students
+  JOIN courses ON students.course_id = courses.course_id
+  ORDER BY students.student_id;
+END
